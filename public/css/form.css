@@ -1,0 +1,74 @@
+.form-border{
+  background: #EEE;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 80%;
+  margin: 30px auto;
+  padding:30px;
+  border-radius: 15px;
+
+}
+
+label {
+  font-weight: bold;
+}
+input{
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+select{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.form-explanation{
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  padding-top:30px;
+}
+
+.title-page{
+  text-align:center;
+  margin:auto;
+  padding-top:30px;
+}
+
+/*VIEWS PAGE*/
+
+.church-rides{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin: auto;
+  width: 80%;
+  border-radius: 15px;
+
+}
+
+.church-row{
+  background: green;
+  padding: 20px;
+}
+
+.church-group{
+  margin: auto;
+  /* background:#EEA1A1; */
+}
+
+.row>*{
+  margin-bottom: var(--bs-gutter-y);
+}
+
+/*RIDER FORM*/
+.first-form{
+
+}
+
+.rider-card{
+  margin-bottom: 20px;
+}
+
+.rider-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.second-form{
+  display: none;
+}

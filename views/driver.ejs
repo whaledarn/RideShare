@@ -1,0 +1,116 @@
+<%- include('header'); -%>
+
+<h2 class="title-page">Driver Sign Up</h2>
+
+<div class="form-explanation">
+  <h4>Signing up as a Driver</h4>
+  <h6>Sign up is available until 10PM on Fridays.</h6>
+  <h4>Receiving Messages</h4>
+  <h6>You will receive both an email and a text message when you sign up as a driver. </h6>
+  <h4>Alerting Your Riders</h4>
+  <h6>Click the button next to your riders to alert them that you have arrived. If they do not arrive within five minutes, you are free to leave.</h6>
+</div>
+
+
+<div class="form-border">
+  <form class="" method="post">
+
+    <div class="row">
+      <div class="col-md-6">
+        <label for="driverFirstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="driverFirstName" name="driverFirstName" required>
+      </div>
+      <div class="col-md-6">
+        <label for="driverLastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="driverLastName" name="driverLastName"required>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-4">
+        <label for="driverEmail" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="driverEmail" name="driverEmail"required>
+      </div>
+      <div class="col-md-4">
+        <label for="driverPhone" class="form-label">Phone Number</label>
+        <input type="number" class="form-control" id="driverPhone" name="driverPhone"required>
+      </div>
+      <div class="col-md-4">
+        <label for="driverUTEID" class="form-label">UTEID</label>
+        <input type="text" class="form-control" id="driverUTEID" name="driverUTEID"required>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="driverChurch">Church</label>
+        <select onchange="changeChurch()" id="driverChurch" class="form-control" name="driverChurch"required>
+          <option selected>Choose...</option>
+          <%for(var i = 0; i<churches.length; i++){%>
+            <option> <%= churches[i] %></option>
+          <%}%>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="driverTime">Time</label>
+        <select id="driverTime" class="form-control" name="driverTime"required>
+        </select>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label for="driverQuantity" class="form-label">How many people can you take?</label>
+        <input type="number" class="form-control" id="driverQuantity" name="driverQuantity" max="6"required>
+      </div>
+
+      <div class="col-md-6">
+        <label for="driverNotes" class="form-label">Notes</label>
+        <input type="text" class="form-control" id="driverNotes" name="driverNotes" required>
+      </div>
+    </div>
+
+
+
+    <!-- <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Send me text messages
+        </label>
+      </div>
+    </div> -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" style="margin-top: 10px">Sign up</button>
+    </div>
+
+  </form>
+</div>
+
+
+<script type="text/javascript">
+
+  function changeChurch(){
+    let churchChosen = document.getElementById("driverChurch");
+    let churchTimes = document.getElementById("driverTime");
+    churchTimes.innerHTML = "";
+    let times = JSON.parse('<%- JSON.stringify(times) %>');
+    if(churchChosen.selectedIndex != 0){
+      for(var i = 0; i<times[churchChosen.selectedIndex-1].length; i++){
+        let newTime = document.createElement("option");
+        newTime.innerHTML = times[churchChosen.selectedIndex-1][i];
+        churchTimes.appendChild(newTime);
+      }
+    }
+  }
+
+</script>
+
+<%- include('footer'); -%>

@@ -1,0 +1,25 @@
+<%- include('header'); -%>
+
+<h2 class="title-page">Edit your signup</h2>
+<div class="form-border" >
+  <form method="post">
+
+
+    <label for="removeUTEID" class="form-label">ID</label>
+    <input type="text" class="form-control" id="removeUTEID" name="id" required>
+    <hr>
+    <label for="whichOne">Driver or Rider?</label>
+    <select id="whichOne" class="form-control" name="whichOne"required>
+      <option selected>Driver</option>
+      <option selected>Rider</option>
+    </select>
+    <hr>
+    <label for="removeReason" class="form-label">Reason for removing signup</label>
+    <input type="text" class="form-control" id="removeReason" placeholder="EX: previous commitment" name="reason" required>
+
+  <div  style= "margin-top:10px">
+    <button type="submit" class="btn btn-primary">Edit Signup</button>
+  </div>
+</form>
+</div>
+<%- include('footer'); -%>

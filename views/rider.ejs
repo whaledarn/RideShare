@@ -1,0 +1,112 @@
+<%- include('header'); -%>
+
+<h2 class="title-page">Rider Sign Up</h2>
+
+<div class="form-explanation">
+  <h4>Signing up as a Rider</h4>
+  <h6>Sign up is available until 10PM on Saturdays.</h6>
+  <h4>Receiving Messages</h4>
+  <h6>You will receive both an email and a text message when you sign up as a rider. </h6>
+  <h4>Connecting with Driver</h4>
+  <h6>You will receive a text when your driver has arrived. You have five minutes before the driver leaves.</h6>
+</div>
+<div class="form-border first-form">
+  <form class="first">
+    <h3>Select your Driver</h3>
+    <div class="row">
+      <%for(var i = 0; i<groups.length; i++){%>
+        <%if((groups[i].quantity - groups[i].riders.length) > 0){%>
+          <div class="col-md-4">
+            <div class="card rider-card" name=<%=groups[i]._id%>>
+              <div class="card-body">
+                <h4 class="card-title"><%=churches[groups[i].church]%> @<%=times[groups[i].church][groups[i].time]%></h4>
+                <h5 class="card-subtitle mb-2 text-muted"><%=groups[i].firstName%> <%=groups[i].lastName%></h5>
+                <h6 class="card-text"><%= groups[i].quantity - groups[i].riders.length %> spots available</h6>
+                <p class="card-text"><%= groups[i].notes %></p>
+                <a onclick="selectDriver(this.name)" class="stretched-link" name=<%=groups[i]._id%>></a>
+              </div>
+            </div>
+          </div>
+        <%}%>
+      <%}%>
+    </div>
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" onclick="moveOn()" style="margin-top:10px">Next</button>
+    </div>
+  </form>
+
+
+</div>
+
+<div class="form-border second-form">
+  <form class="" method="post">
+    <input class = "first-driver" type="text" name="firstDriver" value="" style="display:none">
+    <div class="row">
+      <div class="col-md-6">
+        <label for="riderFirstName" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="riderFirstName" name="riderFirstName" required>
+      </div>
+      <div class="col-md-6">
+        <label for="riderLastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="riderLastName" name="riderLastName" required>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-4">
+        <label for="riderEmail" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="riderEmail" name="riderEmail" required>
+      </div>
+      <div class="col-md-4">
+        <label for="riderPhone" class="form-label">Phone Number</label>
+        <input type="number" class="form-control" id="riderPhone" name="riderPhone" required>
+      </div>
+      <div class="col-md-4">
+        <label for="riderUTEID" class="form-label">UTEID</label>
+        <input type="text" class="form-control" id="riderUTEID" name="riderUTEID" required>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="col-12">
+      <label for="riderAddress" class="form-label">Address</label>
+      <input type="text" class="form-control" id="riderAddress" name="riderAddress" placeholder="1234 Main St" required>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" style="margin-top:10px">Sign up</button>
+    </div>
+
+  </form>
+</div>
+
+
+<script type="text/javascript">
+  let selected = false;
+
+  function selectDriver(id){
+    selected = true;
+    let cards = document.querySelectorAll(".rider-card");
+    cards.forEach(function(card){
+      card.style.background = "#fff";
+    });
+    document.querySelector(".rider-card[name="+id+"]").style.background="#d4d4d4";
+    document.querySelector(".first-driver").value = id;
+  }
+
+  function moveOn() {
+    if(selected){
+      document.querySelector(".first-form").style.display = "none";
+      document.querySelector(".second-form").style.display = "block";
+      console.log(document.querySelector(".first-driver").value);
+    }
+
+
+  }
+</script>
+
+
+<%- include('footer'); -%>

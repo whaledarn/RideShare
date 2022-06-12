@@ -1,0 +1,55 @@
+<%- include('header'); -%>
+<h2 class="title-page">View Current Signups</h2>
+<h6>Fancy view of all current drivers and their riders</h6>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 church-rides">
+  <div class="col">
+    <div class="card h-100 church-group">
+      <div class="card-header" style="background:#EEA1A1; text-align: center;">
+        Austin Stone
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Driver</h5>
+        <p class="card-text">Eating lunch after!</p>
+        <ul class="list-group">
+          <li class="list-group-item">Rider 1</li>
+          <li class="list-group-item">Rider 2</li>
+          <li class="list-group-item">Rider 3</li>
+          <li class="list-group-item"><b>Open Seat</b></li>
+        </ul>
+      </div>
+      <div class="card-footer" style="background:#EEA1A1; text-align: center;">
+        9:00
+      </div>
+    </div>
+  </div>
+  <%for(var i = 0; i<groups.length; i++){%>
+    <div class="col">
+      <div class="card h-100 church-group">
+        <div class="card-header" style="text-align: center;">
+          <%=churches[groups[i].church]%>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%=groups[i].firstName%> <%=groups[i].lastName%> <%=groups[i]._id%></h5>
+          <p class="card-text"><%=groups[i].notes%></p>
+          <ul class="list-group">
+            <%for(var j = 0; j<groups[i].quantity; j++){%>
+              <%if(j<groups[i].riders.length){%>
+                <% let obj = ridergroups.find(o => o._id === groups[i].riders[j]); %>
+                <li class="list-group-item"><%=obj.firstName%> <%=obj.lastName%></li>
+
+              <%} else{%>
+                <li class="list-group-item"><strong>Open Seat</strong></li>
+              <%}%>
+
+            <%}%>
+          </ul>
+        </div>
+        <div class="card-footer" style="text-align: center;">
+          <%=times[groups[i].church][groups[i].time]%>
+        </div>
+      </div>
+    </div>
+  <%}%>
+</div>
+<%- include('footer'); -%>
