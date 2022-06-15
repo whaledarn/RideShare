@@ -81,6 +81,31 @@ app.get("/view", function(req, res) {
   })
 });
 
+app.post("/view", function(req,res){
+  let churchFiltered = req.body.filterChurch;
+  let foundDrivers;
+  Driver.find({}, function(err, fd) {
+    if(churchFiltered === "All Churches")
+      foundDrivers = fd;
+    else{
+      foundDrivers = fd.filter(function (entry){
+          return churches[entry.church]===churchFiltered;
+      });
+    }
+
+    console.log(foundDrivers);
+    Rider.find({}, function(err, foundRiders) {
+      res.render("view", {
+        churches: churches,
+        times: times,
+        groups: foundDrivers,
+        ridergroups: foundRiders
+      });
+    })
+
+  })
+});
+
 app.get("/edit", function(req, res) {
   res.render("edit");
 });
