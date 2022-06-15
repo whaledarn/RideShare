@@ -81,7 +81,7 @@ app.get("/view", function(req, res) {
   })
 });
 
-app.put("/view", function(req,res){
+app.post("/view", function(req,res){
   let churchFiltered = req.body.filterChurch;
   let foundDrivers;
   Driver.find({}, function(err, fd) {
