@@ -81,12 +81,12 @@ app.get("/view", function(req, res) {
   })
 });
 
-app.post("/view", function(req,res){
+app.put("/view", function(req,res){
   let churchFiltered = req.body.filterChurch;
   let foundDrivers;
   Driver.find({}, function(err, fd) {
     if(churchFiltered === "All Churches")
-      foundDrivers = fd;
+      res.redirect("view");
     else{
       foundDrivers = fd.filter(function (entry){
           return churches[entry.church]===churchFiltered;
